@@ -18,7 +18,7 @@ public class ActorsActivity extends Activity implements AppController.OnConnecti
         super.onCreate(savedInstanceState);
 
         AppController.getInstance().setConnectionErrorListener(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_actors);
 
         showActorsFragment();
     }

@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/filmography_margin_bottom">
 
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/poster_image"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/film_poster_width"
         android:layout_height="wrap_content"
+        android:minHeight="@dimen/film_poster_height"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        android:scaleType="fitCenter"
+        android:layout_marginRight="@dimen/details_padding"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_toRightOf="@id/poster_image"
         android:layout_alignParentTop="true">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/film_title"/>
 
         <TextView
             android:id="@+id/release_date"
@@ -29,21 +34,25 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_width="@dimen/popularity_container"
+        android:layout_height="@dimen/popularity_container"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/bg_film_votes"
         android:layout_toRightOf="@id/poster_image"
         android:layout_alignParentBottom="true">
 
         <TextView
             android:id="@+id/vote_average"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/vote_average"/>
 
         <TextView
             android:id="@+id/vote_count"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/vote_count_font_size"/>
     </LinearLayout>
 
 </RelativeLayout>

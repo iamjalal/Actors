@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -95,4 +96,16 @@ public class Actor implements Parcelable {
 
         return films;
     }
+
+    public static Comparator<Actor> COMPARE_BY_NAME = new Comparator<Actor>() {
+        public int compare(Actor one, Actor other) {
+            return one.name.compareTo(other.name);
+        }
+    };
+
+    public static Comparator<Actor> COMPARE_BY_POPULARITY = new Comparator<Actor>() {
+        public int compare(Actor one, Actor other) {
+            return ((Double)one.popularity).compareTo((Double)other.popularity) * -1;
+        }
+    };
 }

@@ -2,4 +2,10 @@
     <string name="app_name">Actors</string>
     <string name="no_connection_error">Oops… Make sure you are connected</string>
     <string name="request_error">Oops… This is embarrassing</string>
+    <string name="action_search">Search</string>
+    <string name="action_sort">Sort</string>
+    <string name="order_by_name">Order by name</string>
+    <string name="order_by_popularity">Order by popularity</string>
+    <string name="filmography_title">Filmography</string>
+    <string name="vote_count_literal">votes</string>
 </resources>

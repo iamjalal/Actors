@@ -1,6 +1,7 @@
 package com.paytouch.jalal.actors.activity;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,10 @@ import com.paytouch.jalal.actors.R;
 import com.paytouch.jalal.actors.fragment.DetailFragment;
 import com.paytouch.jalal.actors.model.Actor;
 import com.paytouch.jalal.actors.model.Film;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by jalalsouky on 05/01/15.
@@ -34,7 +39,7 @@ public class DetailsActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_detail);
+        setContentView(R.layout.activity_details);
 
         if(savedInstanceState != null) {
             mActor = savedInstanceState.getParcelable(BUNDLE_ACTOR);
@@ -55,13 +60,19 @@ public class DetailsActivity extends Activity {
         image.setImageUrl(mActor.profilePath, AppController.getInstance().getImageLoader());
 
         TextView name = (TextView)findViewById(R.id.actor_name);
+        name.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/MyriadPro-Bold.otf"));
         name.setText(mActor.name);
 
         TextView location = (TextView)findViewById(R.id.actor_location);
+        location.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/MyriadPro-It.otf"));
         location.setText(mActor.location);
 
         TextView description = (TextView)findViewById(R.id.actor_description);
+        description.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/MyriadPro-Regular.otf"));
         description.setText(mActor.description);
+
+        TextView filmographyTitle = (TextView)findViewById(R.id.filmography_title);
+        filmographyTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/MyriadPro-Bold.otf"));
 
         LinearLayout filmography = (LinearLayout)findViewById(R.id.filmography_container);
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -72,16 +83,20 @@ public class DetailsActivity extends Activity {
             poster.setImageUrl(film.posterPath, AppController.getInstance().getImageLoader());
 
             TextView title = (TextView)filmView.findViewById(R.id.title);
+            title.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/MyriadPro-Bold.otf"));
             title.setText(film.title);
 
             TextView release = (TextView)filmView.findViewById(R.id.release_date);
-            release.setText(film.releaseDate+"");
+            release.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/MyriadPro-Regular.otf"));
+            release.setText(getDate(film.releaseDate));
 
             TextView voteAverage = (TextView)filmView.findViewById(R.id.vote_average);
+            voteAverage.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/MyriadPro-Bold.otf"));
             voteAverage.setText(film.voteAverage+"");
 
             TextView voteCount = (TextView)filmView.findViewById(R.id.vote_count);
-            voteCount.setText(film.voteCount+"");
+            voteCount.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/MyriadPro-Regular.otf"));
+            voteCount.setText(film.voteCount+" "+getResources().getString(R.string.vote_count_literal));
 
             filmography.addView(filmView);
         }
@@ -93,5 +108,11 @@ public class DetailsActivity extends Activity {
         super.onSaveInstanceState(outState);
 
         outState.putParcelable(BUNDLE_ACTOR, mActor);
+    }
+
+    private String getDate(long milis) {
+        DateFormat outFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date(milis);
+        return outFormat.format(date);
     }
 }

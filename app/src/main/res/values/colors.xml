@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="actionbar_color">#000000</color>
+    <color name="fragment_background">#787882</color>
+    <color name="actor_item_dark">#454954</color>
+    <color name="actor_item_light">#ffffff</color>
+    <color name="popularity_card_background">#eeeeee</color>
+    <color name="popularity_index_high">#72a201</color>
+    <color name="popularity_index_medium">#ffbf30</color>
+    <color name="popularity_index_low">#01b7e6</color>
+    <color name="font_dark">#444a56</color>
+    <color name="font_light">#ffffff</color>
+    <color name="details_background">#88000000</color>
+</resources>

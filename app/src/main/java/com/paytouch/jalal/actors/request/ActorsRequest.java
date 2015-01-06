@@ -1,5 +1,7 @@
 package com.paytouch.jalal.actors.request;
 
+import android.util.Log;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -13,16 +15,16 @@ import org.json.JSONObject;
  */
 public class ActorsRequest {
 
-    private static final String REQUEST_URL = "http://testandroid.pay-touch.com:8080/android-test/rest/actors?page=1";
+    private static final String REQUEST_URL = "http://testandroid.pay-touch.com:8080/android-test/rest/actors?page=";
     private ActorsParser mParser;
 
     public ActorsRequest(ActorsParser.OnResponseListener listener) {
         mParser = new ActorsParser(listener);
     }
 
-    public void request() {
+    public void request(int page) {
 
-        JsonObjectRequest actorsRequest = new JsonObjectRequest(REQUEST_URL, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest actorsRequest = new JsonObjectRequest(REQUEST_URL+page, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 mParser.parse(response);
@@ -36,5 +38,7 @@ public class ActorsRequest {
         });
 
         AppController.getInstance().addToRequestQueue(actorsRequest);
+
+        Log.v("ACTORS", "PAGE: " + page);
     }
 }

@@ -1,38 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_actor_dark">
 
-    <com.android.volley.toolbox.NetworkImageView
-        android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+    <LinearLayout
+        android:id="@+id/actor_container"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="match_parent"
+        <com.paytouch.jalal.actors.view.CircleImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/name" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"/>
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/location" />
+            android:gravity="center_vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/popularity" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/large_font_size"
+                android:id="@+id/name" />
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/pin_icon_size"
+                    android:layout_height="@dimen/pin_icon_size"
+                    android:paddingRight="@dimen/pin_icon_padding"
+                    android:src="@drawable/ic_location_dark"
+                    android:scaleType="fitCenter"
+                    android:id="@+id/location_icon"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/location"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+    <TextView
+        android:layout_below="@id/actor_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="100dp"
+        android:maxLines="5"
+        android:ellipsize="end"
+        android:id="@+id/description" />
+
+    <TextView
+        android:background="@drawable/bg_popularity_high"
+        android:layout_width="@dimen/popularity_container"
+        android:layout_height="@dimen/popularity_container"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:textColor="@color/font_dark"
+        android:textSize="@dimen/large_font_size"
+        android:id="@+id/popularity" />
+
+</RelativeLayout>
