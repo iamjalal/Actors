@@ -34,6 +34,7 @@ public class ActorsRequest {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                mParser.mOnResponseListener.onError();
             }
         });
 

@@ -6,7 +6,6 @@
     <style name="AppThemeTransparent" parent="@android:style/Theme.Holo.Light.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@color/details_background</item>
-        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
     <style name="CustomActionBar"

@@ -2,75 +2,86 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="false"
     android:padding="@dimen/fragment_padding">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
         android:background="@drawable/bg_details"
         android:padding="@dimen/details_padding">
 
+        <com.paytouch.jalal.actors.view.CircleImageView
+            android:id="@+id/actor_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/actor_image_min_width"
+            android:layout_marginTop="@dimen/details_padding"
+            android:layout_marginRight="@dimen/details_padding"
+            android:layout_marginBottom="@dimen/details_padding"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/large_font_size"
+            android:layout_toRightOf="@id/actor_image"
+            android:layout_marginTop="@dimen/name_top_margin"
+            android:id="@+id/actor_name" />
+
         <LinearLayout
-            android:id="@+id/info_container"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/actor_image"
+            android:layout_below="@id/actor_name"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/pin_icon_size"
+                android:layout_height="@dimen/pin_icon_size"
+                android:paddingRight="@dimen/pin_icon_padding"
+                android:src="@drawable/ic_location_dark"
+                android:scaleType="fitCenter"
+                android:id="@+id/location_icon"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/actor_location"/>
+        </LinearLayout>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:maxLines="5"
+            android:ellipsize="end"
+            android:id="@+id/actor_description"
+            android:paddingRight="@dimen/details_padding"
+            android:layout_marginTop="@dimen/description_top_margin"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/actor_description"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/filmography_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/large_font_size"
+                android:layout_marginTop="@dimen/details_padding"
+                android:layout_marginBottom="@dimen/details_padding"
+                android:text="@string/filmography_title"/>
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.paytouch.jalal.actors.view.CircleImageView
-                    android:id="@+id/actor_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"/>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/large_font_size"
-                        android:id="@+id/actor_name" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_location_dark"
-                        android:drawablePadding="6dp"
-                        android:id="@+id/actor_location" />
-                </LinearLayout>
-            </LinearLayout>
-            <TextView
-                android:id="@+id/actor_description"
+                android:id="@+id/filmography_container"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/filmography_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/large_font_size"
-            android:layout_marginTop="@dimen/details_padding"
-            android:layout_marginBottom="@dimen/details_padding"
-            android:text="@string/filmography_title"/>
-
-        <LinearLayout
-            android:id="@+id/filmography_container"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
 </ScrollView>

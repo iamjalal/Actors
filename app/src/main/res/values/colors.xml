@@ -11,4 +11,6 @@
     <color name="font_dark">#444a56</color>
     <color name="font_light">#ffffff</color>
     <color name="details_background">#88000000</color>
+    <color name="aqua_details">#00a191</color>
+    <color name="search_button">#72a201</color>
 </resources>

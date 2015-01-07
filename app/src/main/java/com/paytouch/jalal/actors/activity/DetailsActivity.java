@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.android.volley.toolbox.NetworkImageView;
 import com.paytouch.jalal.actors.AppController;
 import com.paytouch.jalal.actors.R;
-import com.paytouch.jalal.actors.fragment.DetailFragment;
 import com.paytouch.jalal.actors.model.Actor;
 import com.paytouch.jalal.actors.model.Film;
 
@@ -25,16 +24,7 @@ import java.util.Date;
 public class DetailsActivity extends Activity {
 
     public static final String BUNDLE_ACTOR = "actor";
-
     private Actor mActor;
-
-    public static DetailFragment newInstance(Actor actor) {
-        DetailFragment fragment = new DetailFragment();
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(BUNDLE_ACTOR, actor);
-        fragment.setArguments(bundle);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.paytouch.jalal.actors.R;
 import com.paytouch.jalal.actors.activity.DetailsActivity;
+import com.paytouch.jalal.actors.activity.SearchActivity;
 import com.paytouch.jalal.actors.adapter.ActorAdapter;
 import com.paytouch.jalal.actors.model.Actor;
 import com.paytouch.jalal.actors.parser.ActorsParser;
@@ -115,6 +116,8 @@ public class ActorsFragment extends Fragment implements ActorsParser.OnResponseL
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.action_by_name:
                 mAdapter.sort(ActorAdapter.SortType.NAME);

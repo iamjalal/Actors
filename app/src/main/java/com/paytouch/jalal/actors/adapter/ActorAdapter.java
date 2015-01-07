@@ -27,8 +27,6 @@ public class ActorAdapter extends BaseAdapter {
     private Context mContext;
     private OnActorClickListener mOnActorClickListener;
 
-    private int mSortType = -1;
-
     public class SortType {
         public static final int NAME = 0;
         public static final int POPULARITY = 1;

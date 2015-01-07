@@ -16,7 +16,7 @@ public class ActorsParser {
 
     public static final String JSON_ROOT = "data";
 
-    private OnResponseListener mOnResponseListener;
+    public OnResponseListener mOnResponseListener;
 
     public ActorsParser(OnResponseListener listener) {
         mOnResponseListener = listener;

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:layout_marginLeft="48dp"
+        android:background="@drawable/bg_details"
+        android:padding="@dimen/fragment_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/details_padding"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp">
+
+                <ImageView
+                    android:id="@+id/search_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingTop="2dp"
+                    android:paddingRight="8dp"
+                    android:src="@drawable/ic_search_green"/>
+
+                <TextView
+                    android:id="@+id/search_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/search_icon"
+                    android:textColor="@color/aqua_details"
+                    android:text="Search"/>
+
+                <ImageView
+                    android:id="@+id/close_button"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_alignParentRight="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_close"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/search_name_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="name"
+                android:layout_marginBottom="@dimen/details_padding"/>
+
+            <EditText
+                android:id="@+id/search_name_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/details_padding"/>
+
+            <TextView
+                android:id="@+id/search_location_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="location"/>
+
+            <Spinner
+                android:id="@+id/search_location_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/details_padding"/>
+
+            <TextView
+                android:id="@+id/search_top_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="is top?"
+                android:layout_marginBottom="@dimen/details_padding"/>
+
+            <RadioGroup
+                android:id="@+id/search_top_radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/details_padding">
+
+                <RadioButton
+                    android:id="@+id/radio_yes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="yes"
+                    android:onClick="onRadioButtonClicked"/>
+
+                <RadioButton
+                    android:id="@+id/radio_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="no"
+                    android:onClick="onRadioButtonClicked"/>
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/search_popularity_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="popularity"
+                android:layout_marginBottom="@dimen/details_padding"/>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/details_padding">
+
+                <SeekBar
+                    android:id="@+id/search_popularity_seek"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"/>
+
+                <TextView
+                    android:id="@+id/seek_init_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/search_popularity_seek"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="12dp"
+                    android:text="0"/>
+
+                <TextView
+                    android:id="@+id/seek_end_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/search_popularity_seek"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:text="100"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_search_button"
+            android:text="Search"
+            android:textColor="@android:color/white"/>
+    </RelativeLayout>

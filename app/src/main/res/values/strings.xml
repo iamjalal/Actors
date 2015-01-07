@@ -8,4 +8,22 @@
     <string name="order_by_popularity">Order by popularity</string>
     <string name="filmography_title">Filmography</string>
     <string name="vote_count_literal">votes</string>
+
+    <string-array name="locations_array">
+        <item>Barcelona</item>
+        <item>London</item>
+        <item>Paris</item>
+        <item>New York</item>
+        <item>Dallas</item>
+        <item>Dublin</item>
+        <item>Helsinki</item>
+        <item>Berlin</item>
+        <item>San Francisco</item>
+        <item>Sydney</item>
+        <item>Vancouver</item>
+        <item>Rome</item>
+        <item>Chicago</item>
+        <item>Boston</item>
+        <item>Los Angeles</item>
+    </string-array>
 </resources>
