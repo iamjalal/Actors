@@ -60,17 +60,6 @@ public class Actor implements Parcelable {
         in.readList(filmography, Film.class.getClassLoader());
     }
 
-    public Actor(String name, String location, boolean top, double popularity) {
-        this.name = name;
-        this.location = location;
-        this.top = top;
-        this.popularity = popularity;
-        this.profilePath = null;
-        this.id = 0;
-        this.description = null;
-        this.filmography = null;
-    }
-
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
