@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.paytouch.jalal.actors.R;
+import com.paytouch.jalal.actors.activity.ActorsActivity;
 import com.paytouch.jalal.actors.activity.DetailsActivity;
 import com.paytouch.jalal.actors.activity.SearchActivity;
 import com.paytouch.jalal.actors.adapter.ActorAdapter;
@@ -32,17 +33,25 @@ import java.util.List;
 public class ActorsFragment extends Fragment implements ActorsParser.OnResponseListener,
         EndlessScrollListener.OnEndReachedListener, ActorAdapter.OnActorClickListener{
 
-    private static final String BUNDLE_ACTORS = "actors";
+    public static final String BUNDLE_ACTORS = "actors";
     private static final String BUNDLE_PAGE = "page";
+
+    public static final int SEARCH_REQUEST_CODE = 100;
 
     private ActorsRequest mActorsRequest;
     private EndlessScrollListener mEndlessScrollListener;
     private ActorAdapter mAdapter;
-    private List<Actor> mActors = new ArrayList<Actor>();
+    private List<Actor> mActors;
     private int mCurrentPage;
 
-    public static ActorsFragment newInstance() {
+    public static ActorsFragment newInstance(List<Actor> actors) {
         ActorsFragment fragment = new ActorsFragment();
+
+        if(actors != null) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArrayList(BUNDLE_ACTORS, new ArrayList<Parcelable>(actors));
+            fragment.setArguments(bundle);
+        }
         return fragment;
     }
 
@@ -57,21 +66,30 @@ public class ActorsFragment extends Fragment implements ActorsParser.OnResponseL
     public void onResume() {
         super.onResume();
 
-        if(mActors.size() == 0) {
+        if(mActors == null) {
             mCurrentPage += 1;
             mActorsRequest.request(mCurrentPage);
+            getActivity().setProgressBarIndeterminateVisibility(true);
+        }
+        else {
+            onDataReady(null);
         }
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setHasOptionsMenu(true);
 
         if(savedInstanceState != null) {
             mActors = savedInstanceState.getParcelableArrayList(BUNDLE_ACTORS);
             mCurrentPage = savedInstanceState.getInt(BUNDLE_PAGE);
+        }
+        else {
+            Bundle args = getArguments();
+            if(args != null) {
+                mActors = args.getParcelableArrayList(BUNDLE_ACTORS);
+            }
         }
     }
 
@@ -84,21 +102,33 @@ public class ActorsFragment extends Fragment implements ActorsParser.OnResponseL
         mAdapter = new ActorAdapter(getActivity(), this);
         ListView list = (ListView)view.findViewById(R.id.listView);
         list.setAdapter(mAdapter);
-        list.setOnScrollListener(mEndlessScrollListener);
+        if(getTag() == ActorsActivity.ACTOR_FRAGMENT) {
+            list.setOnScrollListener(mEndlessScrollListener);
+        }
 
         return view;
     }
 
     @Override
     public void onDataReady(List<Actor> actors) {
-        mActors.addAll(actors);
-        mAdapter.addEntries(actors);
+        getActivity().setProgressBarIndeterminateVisibility(false);
+
+        if(mActors == null) {
+            mActors = new ArrayList<Actor>();
+        }
+
+        if(actors != null) {
+            mActors.addAll(actors);
+        }
+
+        mAdapter.setEntries(mActors);
     }
 
     @Override
     public void onEndReached() {
         mCurrentPage += 1;
         mActorsRequest.request(mCurrentPage);
+        getActivity().setProgressBarIndeterminateVisibility(true);
     }
 
     @Override
@@ -117,7 +147,9 @@ public class ActorsFragment extends Fragment implements ActorsParser.OnResponseL
         switch (item.getItemId()) {
             case R.id.action_search:
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
-                startActivity(intent);
+                intent.putParcelableArrayListExtra(SearchActivity.BUNDLE_ACTORS,
+                        new ArrayList<Actor>(mActors));
+                getActivity().startActivityForResult(intent, SEARCH_REQUEST_CODE);
                 return true;
             case R.id.action_by_name:
                 mAdapter.sort(ActorAdapter.SortType.NAME);

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/search_window_margin_left"
+    android:background="@drawable/bg_details"
+    android:padding="@dimen/fragment_padding"
+    android:clipToPadding="false">
 
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
+        android:id="@+id/scroll_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:layout_marginLeft="48dp"
-        android:background="@drawable/bg_details"
-        android:padding="@dimen/fragment_padding">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,7 +21,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="@dimen/search_header_padding_bottom">
 
                 <ImageView
                     android:id="@+id/search_icon"
@@ -35,12 +38,12 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/search_icon"
                     android:textColor="@color/aqua_details"
-                    android:text="Search"/>
+                    android:text="@string/search_literal"/>
 
                 <ImageView
                     android:id="@+id/close_button"
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
+                    android:layout_width="@dimen/search_close_button_size"
+                    android:layout_height="@dimen/search_close_button_size"
                     android:layout_alignParentRight="true"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_close"/>
@@ -50,7 +53,7 @@
                 android:id="@+id/search_name_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="name"
+                android:text="@string/search_name_label"
                 android:layout_marginBottom="@dimen/details_padding"/>
 
             <EditText
@@ -63,7 +66,7 @@
                 android:id="@+id/search_location_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="location"/>
+                android:text="@string/search_location_label"/>
 
             <Spinner
                 android:id="@+id/search_location_spinner"
@@ -75,7 +78,7 @@
                 android:id="@+id/search_top_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="is top?"
+                android:text="@string/search_top_label"
                 android:layout_marginBottom="@dimen/details_padding"/>
 
             <RadioGroup
@@ -88,14 +91,14 @@
                     android:id="@+id/radio_yes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="yes"
+                    android:text="@string/search_top_yes"
                     android:onClick="onRadioButtonClicked"/>
 
                 <RadioButton
                     android:id="@+id/radio_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="no"
+                    android:text="@string/search_top_no"
                     android:onClick="onRadioButtonClicked"/>
             </RadioGroup>
 
@@ -103,13 +106,14 @@
                 android:id="@+id/search_popularity_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="popularity"
+                android:text="@string/search_popularity_label"
                 android:layout_marginBottom="@dimen/details_padding"/>
 
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/details_padding">
+                android:layout_marginBottom="@dimen/details_padding"
+                android:paddingBottom="@dimen/search_button_height">
 
                 <SeekBar
                     android:id="@+id/search_popularity_seek"
@@ -124,7 +128,7 @@
                     android:layout_below="@id/search_popularity_seek"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="12dp"
-                    android:text="0"/>
+                    android:text="@string/search_popularity_min"/>
 
                 <TextView
                     android:id="@+id/seek_end_label"
@@ -133,16 +137,17 @@
                     android:layout_below="@id/search_popularity_seek"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="8dp"
-                    android:text="100"/>
+                    android:text="@string/search_popularity_max"/>
             </RelativeLayout>
         </LinearLayout>
+    </ScrollView>
 
-        <Button
-            android:id="@+id/search_button"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/bg_search_button"
-            android:text="Search"
-            android:textColor="@android:color/white"/>
-    </RelativeLayout>
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_button_height"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_search_button"
+        android:text="@string/search_literal"
+        android:textColor="@android:color/white"/>
+</RelativeLayout>

@@ -42,8 +42,8 @@ public class ActorAdapter extends BaseAdapter {
         mOnActorClickListener = listener;
     }
 
-    public void addEntries(List<Actor> actors) {
-        mEntries.addAll(actors);
+    public void setEntries(List<Actor> actors) {
+        mEntries = actors;
         notifyDataSetChanged();
     }
 

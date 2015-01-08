@@ -8,6 +8,15 @@
     <string name="order_by_popularity">Order by popularity</string>
     <string name="filmography_title">Filmography</string>
     <string name="vote_count_literal">votes</string>
+    <string name="search_literal">Search</string>
+    <string name="search_name_label">name</string>
+    <string name="search_location_label">location</string>
+    <string name="search_top_label">is top?</string>
+    <string name="search_top_yes">yes</string>
+    <string name="search_top_no">no</string>
+    <string name="search_popularity_label">popularity</string>
+    <string name="search_popularity_min">0</string>
+    <string name="search_popularity_max">100</string>
 
     <string-array name="locations_array">
         <item>Barcelona</item>

@@ -1,9 +1,9 @@
 package com.paytouch.jalal.actors.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -16,21 +16,35 @@ import android.widget.TextView;
 
 import com.paytouch.jalal.actors.R;
 import com.paytouch.jalal.actors.adapter.LocationSpinnerAdapter;
+import com.paytouch.jalal.actors.fragment.ActorsFragment;
+import com.paytouch.jalal.actors.model.Actor;
+import com.paytouch.jalal.actors.util.ActorSearch;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jalals on 1/7/2015.
  */
 public class SearchActivity extends Activity {
 
-    private String mName = "";
+    public static final String BUNDLE_ACTORS = "actors";
+
     private String mLocation = "";
     private boolean mIsTop;
     private int mPopularity;
+
+    private List<Actor> mActors;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        Bundle args = getIntent().getExtras();
+        if(args != null) {
+            mActors = args.getParcelableArrayList(BUNDLE_ACTORS);
+        }
 
         updateUi();
     }
@@ -73,8 +87,11 @@ public class SearchActivity extends Activity {
         isTopTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/MyriadPro-Bold.otf"));
 
         RadioButton radioYes = (RadioButton)findViewById(R.id.radio_yes);
+        radioYes.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/MyriadPro-Regular.otf"));
         radioYes.setChecked(mIsTop);
+
         RadioButton radioNo = (RadioButton)findViewById(R.id.radio_no);
+        radioNo.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/MyriadPro-Regular.otf"));
         radioNo.setChecked(!mIsTop);
 
         TextView popularityTitle = (TextView)findViewById(R.id.search_popularity_title);
@@ -107,9 +124,14 @@ public class SearchActivity extends Activity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mName = nameEdit.getText().toString();
+                List<Actor> filteredActors = ActorSearch.filter(mActors, nameEdit.getText().toString(),
+                        mLocation, mIsTop, mPopularity);
 
-                Log.v("ACTORS", "n: "+mName+" , l: "+mLocation+" , t: "+mIsTop+" , p: "+mPopularity);
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra(ActorsFragment.BUNDLE_ACTORS, new ArrayList<Actor>(filteredActors));
+                setResult(Activity.RESULT_OK, returnIntent);
+
+                finish();
             }
         });
 

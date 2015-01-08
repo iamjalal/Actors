@@ -12,5 +12,7 @@
         parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/actionbar_color</item>
         <item name="android:displayOptions">showHome|useLogo</item>
+        <item name="android:indeterminateProgressStyle">@android:style/Widget.DeviceDefault.Light.ProgressBar.Small</item>
     </style>
+
 </resources>

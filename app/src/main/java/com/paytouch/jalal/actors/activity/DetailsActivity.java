@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -45,6 +46,14 @@ public class DetailsActivity extends Activity {
     }
 
     private void updateUi() {
+
+        ImageView backButton = (ImageView)findViewById(R.id.back_icon);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         NetworkImageView image = (NetworkImageView)findViewById(R.id.actor_image);
         image.setImageUrl(mActor.profilePath, AppController.getInstance().getImageLoader());
@@ -90,7 +99,6 @@ public class DetailsActivity extends Activity {
 
             filmography.addView(filmView);
         }
-
     }
 
     @Override
